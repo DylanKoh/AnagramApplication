@@ -59,6 +59,7 @@
             this.btnRandom.TabIndex = 2;
             this.btnRandom.Text = "Random";
             this.btnRandom.UseVisualStyleBackColor = true;
+            this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
             // 
             // btnGenerate
             // 
@@ -68,6 +69,7 @@
             this.btnGenerate.TabIndex = 3;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // lbResults
             // 
