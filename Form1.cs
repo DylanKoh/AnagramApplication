@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,7 +46,102 @@ namespace AnagramApplication
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
+            lbResults.Items.Clear();
+            using (var streamReader = new StreamReader("C:/Users/Asus/source/repos/AnagramApplication/words_alpha.txt"))
+            {
 
+                var values = streamReader.ReadToEnd();
+                var list = values.Split('\n').ToList();
+                var listForComparison = new List<string>();
+
+
+                foreach (var words in list)
+                {
+                    if (words.Length > txtCharacter.Text.Length)
+                    {
+                        listForComparison.Add(words);
+                    }
+
+                    ///TO FIX: Use ordinary For loop
+                    else if (words.Length < txtCharacter.Text.Length)
+                    {
+                        var boolCheck = true;
+                        foreach (var wordA in words.ToCharArray().OrderBy(x => x))
+                        {
+                            if (!boolCheck) break;
+                            else
+                            {
+                                foreach (var item in txtCharacter.Text.ToLower().ToCharArray().OrderBy(x => x))
+                                {
+                                    if (wordA != item)
+                                    {
+                                        boolCheck = false;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        boolCheck = true;
+                                        break;
+                                    }
+                                }
+                            }
+
+
+
+                        }
+                        if (boolCheck == false)
+                        {
+                            listForComparison.Add(words);
+                        }
+
+                    }
+
+                    ///TO FIX: Use ordinary For loop
+                    else if (words.Length == txtCharacter.Text.Length)
+                    {
+                        var boolCheck = true;
+                        foreach (var item in txtCharacter.Text.ToLower().ToCharArray().OrderBy(x => x))
+                        {
+                            if (!boolCheck) break;
+                            else
+                            {
+                                foreach (var wordA in words.ToCharArray().OrderBy(x => x))
+                                {
+                                    if (wordA != item)
+                                    {
+                                        boolCheck = false;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        boolCheck = true;
+                                    }
+                                }
+
+                            }
+
+                        }
+                        if (boolCheck == false)
+                        {
+                            listForComparison.Add(words);
+                        }
+
+                    }
+                }
+
+
+                foreach (var item in listForComparison)
+                {
+                    list.Remove(item);
+                }
+
+                lbResults.Items.AddRange(list.ToArray());
+
+
+
+
+
+            }
         }
     }
 }
