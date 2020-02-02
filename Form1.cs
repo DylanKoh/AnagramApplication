@@ -40,6 +40,8 @@ namespace AnagramApplication
             Random random = new Random();
             const string x = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             var toFill = string.Empty;
+
+            ///This loop helps to fill toFill variable with 10 characters of A-Z
             for (int i = 0; i < 10; i++)
             {
                 toFill += x.Select(s => x[random.Next(x.Length)]).FirstOrDefault();
@@ -74,21 +76,29 @@ namespace AnagramApplication
                     ///Checks if the word in the dictionary is longer than the input
                     if (words.Length < txtCharacter.Text.Length)
                     {
+                        ///Initialise bool check to be true by default
                         var boolCheck = true;
+
+                        ///Distinctify the characters of the current word in the dictionary
                         var hashWord = wordArray.Distinct();
 
                         foreach (var item in hashWord)
                         {
+                            ///Checks for every new character for comparison, if bool check is false. If so, break the loop
+                            ///and skip to the next word in the dictionary
                             if (!boolCheck) break;
                             else
                             {
-
+                                ///Checks if the input contains the word's character, else bool check will be false,
+                                ///breaking the loop and skipping the word in the dictionary
                                 if (!array.Contains(item))
                                 {
                                     boolCheck = false;
                                 }
                                 else
                                 {
+                                    ///Checks if the current character, if it is more than the same character of the input,
+                                    ///change boolean check to be false, breaking the loop and not adding that specific word
                                     if (array.Where(x => x == item).Select(x => x).Count() < wordArray.Where(x => x == item).Select(x => x).Count())
                                     { 
                                         boolCheck = false;
@@ -104,7 +114,7 @@ namespace AnagramApplication
                             }
                         }
 
-                        ///If boolean check is true, add the word into the results list
+                        ///If boolean check is still true after every check, add the word into the results list
                         if (boolCheck)
                         {
                             lbResults.Items.Add(words);
@@ -118,18 +128,24 @@ namespace AnagramApplication
                         ///Initiate boolean check value
                         var boolCheck = true;
 
-                        ///Index increase base on the length of the array
+                        ///Index increase based on the length of the input character array
                         for (int i = 0; i < array.Length; i++)
                         {
                             var item = array[i];
+
+                            ///Checks for every new character for comparison, if bool check is false. If so, break the loop
+                            ///and skip to the next word in the dictionary
                             if (!boolCheck) break;
                             else
                             {
-
+                                ///Checks if the word's character and input character (since ordered by alphabetical order) matches.
+                                ///If it doesnt, change boolean check to be false, breaking the loop and not adding that specific word
                                 if (wordArray[i] != item)
                                 {
                                     boolCheck = false;
                                 }
+
+                                ///Else remain true and eventually add the word into the results
                                 else
                                 {
                                     boolCheck = true;
@@ -138,6 +154,8 @@ namespace AnagramApplication
 
                             }
                         }
+
+                        ///If boolean check is still true after every check, add the word into the results list
                         if (boolCheck)
                         {
                             lbResults.Items.Add(words);
