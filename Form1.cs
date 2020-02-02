@@ -58,7 +58,7 @@ namespace AnagramApplication
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             lbResults.Items.Clear();
-            using (var streamReader = new StreamReader("D:/Users/Dylan Koh/Source/Repos/DylanKoh/AnagramApplication/words_alpha.txt"))
+            using (var streamReader = new StreamReader("words_alpha.txt"))
             {
 
                 var values = streamReader.ReadToEnd();
