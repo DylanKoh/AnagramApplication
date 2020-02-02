@@ -33,29 +33,33 @@
             this.btnRandom = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.lbResults = new System.Windows.Forms.ListBox();
+            this.lblTimeTaken = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(140, 49);
+            this.label1.Location = new System.Drawing.Point(105, 40);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 17);
+            this.label1.Size = new System.Drawing.Size(64, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Characters: ";
             // 
             // txtCharacter
             // 
-            this.txtCharacter.Location = new System.Drawing.Point(231, 46);
+            this.txtCharacter.Location = new System.Drawing.Point(173, 37);
+            this.txtCharacter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCharacter.Name = "txtCharacter";
-            this.txtCharacter.Size = new System.Drawing.Size(339, 22);
+            this.txtCharacter.Size = new System.Drawing.Size(255, 20);
             this.txtCharacter.TabIndex = 1;
             // 
             // btnRandom
             // 
-            this.btnRandom.Location = new System.Drawing.Point(143, 100);
+            this.btnRandom.Location = new System.Drawing.Point(107, 81);
+            this.btnRandom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRandom.Name = "btnRandom";
-            this.btnRandom.Size = new System.Drawing.Size(89, 33);
+            this.btnRandom.Size = new System.Drawing.Size(67, 27);
             this.btnRandom.TabIndex = 2;
             this.btnRandom.Text = "Random";
             this.btnRandom.UseVisualStyleBackColor = true;
@@ -63,9 +67,10 @@
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(481, 100);
+            this.btnGenerate.Location = new System.Drawing.Point(361, 81);
+            this.btnGenerate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(89, 33);
+            this.btnGenerate.Size = new System.Drawing.Size(67, 27);
             this.btnGenerate.TabIndex = 3;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
@@ -74,22 +79,32 @@
             // lbResults
             // 
             this.lbResults.FormattingEnabled = true;
-            this.lbResults.ItemHeight = 16;
-            this.lbResults.Location = new System.Drawing.Point(143, 158);
+            this.lbResults.Location = new System.Drawing.Point(107, 128);
+            this.lbResults.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lbResults.Name = "lbResults";
-            this.lbResults.Size = new System.Drawing.Size(427, 260);
+            this.lbResults.Size = new System.Drawing.Size(321, 212);
             this.lbResults.TabIndex = 4;
+            // 
+            // lblTimeTaken
+            // 
+            this.lblTimeTaken.AutoSize = true;
+            this.lblTimeTaken.Location = new System.Drawing.Point(104, 342);
+            this.lblTimeTaken.Name = "lblTimeTaken";
+            this.lblTimeTaken.Size = new System.Drawing.Size(0, 13);
+            this.lblTimeTaken.TabIndex = 5;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 457);
+            this.Controls.Add(this.lblTimeTaken);
             this.Controls.Add(this.lbResults);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.btnRandom);
             this.Controls.Add(this.txtCharacter);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Anagram Application";
             this.ResumeLayout(false);
@@ -104,6 +119,7 @@
         private System.Windows.Forms.Button btnRandom;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.ListBox lbResults;
+        private System.Windows.Forms.Label lblTimeTaken;
     }
 }
 

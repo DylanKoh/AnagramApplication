@@ -62,7 +62,9 @@ namespace AnagramApplication
 
             var values = File.ReadAllLines("words_alpha.txt").ToList();
             var array = txtCharacter.Text.ToLower().OrderBy(x => x).ToArray();
-
+            var sb = new StringBuilder();
+            var StartTime = DateTime.Now;
+            sb.AppendLine($"Started at {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}");
             ///For every word in the dictionary....
             foreach (var words in values)
             {
@@ -161,9 +163,12 @@ namespace AnagramApplication
                 }
             }
 
+            sb.AppendLine($"\nEnded at {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}");
+            var TS = new TimeSpan(DateTime.Now.Ticks - StartTime.Ticks);
+            sb.AppendLine($"\nTime Taken (Milliseconds): {TS.TotalMilliseconds}");
+            sb.AppendLine($"\nAnagrams Found: {lbResults.Items.Count - 1}");
 
-
-
+            lblTimeTaken.Text = sb.ToString();
 
 
         }
