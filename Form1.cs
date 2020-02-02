@@ -51,51 +51,45 @@ namespace AnagramApplication
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             lbResults.Items.Clear();
-            using (var streamReader = new StreamReader("C:/Users/Asus/source/repos/AnagramApplication/words_alpha.txt"))
+            using (var streamReader = new StreamReader("D:/Users/Dylan Koh/Source/Repos/DylanKoh/AnagramApplication/words_alpha.txt"))
             {
 
                 var values = streamReader.ReadToEnd();
-                var list = values.Split('\n').ToList();
-                var listForComparison = new List<string>();
+                var stringSeperate = new string[] { "\r\n" };
+                var list = values.Split(stringSeperate, StringSplitOptions.None).ToList();
+                var array = txtCharacter.Text.ToLower().OrderBy(x => x).ToArray();
 
 
                 foreach (var words in list)
                 {
-                    if (words.Length > txtCharacter.Text.Length)
-                    {
-                        listForComparison.Add(words);
-                    }
-
-                    ///TO FIX: Use ordinary For loop
-                    else if (words.Length < txtCharacter.Text.Length)
+                    var wordArray = words.OrderBy(x => x).ToArray();
+                    if (words.Length < txtCharacter.Text.Length)
                     {
                         var boolCheck = true;
-                        foreach (var wordA in words.ToCharArray().OrderBy(x => x))
+                        var hashWord = words.OrderBy(x => x).ToArray().Distinct();
+
+                        foreach (var item in hashWord)
                         {
                             if (!boolCheck) break;
                             else
                             {
-                                foreach (var item in txtCharacter.Text.ToLower().ToCharArray().OrderBy(x => x))
+
+                                if (!array.Contains(item))
                                 {
-                                    if (wordA != item)
-                                    {
-                                        boolCheck = false;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        boolCheck = true;
-                                        break;
-                                    }
+                                    boolCheck = false;
                                 }
+                                else
+                                {
+                                    boolCheck = true;
+                                }
+
+
                             }
-
-
-
                         }
-                        if (boolCheck == false)
+
+                        if (boolCheck)
                         {
-                            listForComparison.Add(words);
+                            lbResults.Items.Add(words);
                         }
 
                     }
@@ -104,42 +98,33 @@ namespace AnagramApplication
                     else if (words.Length == txtCharacter.Text.Length)
                     {
                         var boolCheck = true;
-                        foreach (var item in txtCharacter.Text.ToLower().ToCharArray().OrderBy(x => x))
+
+                        for (int i = 0; i < array.Length; i++)
                         {
+                            var item = array[i];
                             if (!boolCheck) break;
                             else
                             {
-                                foreach (var wordA in words.ToCharArray().OrderBy(x => x))
+
+                                if (wordArray[i] != item)
                                 {
-                                    if (wordA != item)
-                                    {
-                                        boolCheck = false;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        boolCheck = true;
-                                    }
+                                    boolCheck = false;
+                                }
+                                else
+                                {
+                                    boolCheck = true;
                                 }
 
-                            }
 
+                            }
                         }
-                        if (boolCheck == false)
+                        if (boolCheck)
                         {
-                            listForComparison.Add(words);
+                            lbResults.Items.Add(words);
                         }
 
                     }
                 }
-
-
-                foreach (var item in listForComparison)
-                {
-                    list.Remove(item);
-                }
-
-                lbResults.Items.AddRange(list.ToArray());
 
 
 
