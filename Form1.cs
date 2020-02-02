@@ -48,6 +48,11 @@ namespace AnagramApplication
             return toFill;
         }
 
+        /// <summary>
+        /// This method is triggered when the Generate button is triggered
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             lbResults.Items.Clear();
@@ -59,14 +64,18 @@ namespace AnagramApplication
                 var list = values.Split(stringSeperate, StringSplitOptions.None).ToList();
                 var array = txtCharacter.Text.ToLower().OrderBy(x => x).ToArray();
 
-
+                ///For every word in the dictionary....
                 foreach (var words in list)
                 {
+                    ///Breaks the word into a character array, then reorder them by alphabetical
+                    ///order
                     var wordArray = words.OrderBy(x => x).ToArray();
+
+                    ///Checks if the word in the dictionary is longer than the input
                     if (words.Length < txtCharacter.Text.Length)
                     {
                         var boolCheck = true;
-                        var hashWord = words.OrderBy(x => x).ToArray().Distinct();
+                        var hashWord = wordArray.Distinct();
 
                         foreach (var item in hashWord)
                         {
@@ -80,13 +89,22 @@ namespace AnagramApplication
                                 }
                                 else
                                 {
-                                    boolCheck = true;
+                                    if (array.Where(x => x == item).Select(x => x).Count() < wordArray.Where(x => x == item).Select(x => x).Count())
+                                    { 
+                                        boolCheck = false;
+                                    }
+                                    else
+                                    {
+                                        boolCheck = true;
+                                    }
+                                    
                                 }
 
 
                             }
                         }
 
+                        ///If boolean check is true, add the word into the results list
                         if (boolCheck)
                         {
                             lbResults.Items.Add(words);
@@ -94,11 +112,13 @@ namespace AnagramApplication
 
                     }
 
-                    ///TO FIX: Use ordinary For loop
+                    ///Checks if the word in the dictionary is as long as the input
                     else if (words.Length == txtCharacter.Text.Length)
                     {
+                        ///Initiate boolean check value
                         var boolCheck = true;
 
+                        ///Index increase base on the length of the array
                         for (int i = 0; i < array.Length; i++)
                         {
                             var item = array[i];
