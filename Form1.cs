@@ -31,6 +31,10 @@ namespace AnagramApplication
             txtCharacter.Text += randomString();
         }
 
+        /// <summary>
+        /// This method is only called when event btnRandom_Click() is triggered
+        /// </summary>
+        /// <returns></returns>
         private string randomString()
         {
             Random random = new Random();
