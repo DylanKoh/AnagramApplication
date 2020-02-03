@@ -66,7 +66,7 @@ namespace AnagramApplication
             var StartTime = DateTime.Now;
             sb.AppendLine($"Started at {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}");
             ///For every word in the dictionary....
-            foreach (var words in values)
+            foreach (var words in values.AsParallel())
             {
                 ///Breaks the word into a character array, then reorder them by alphabetical
                 ///order
